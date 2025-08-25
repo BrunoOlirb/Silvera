@@ -7,6 +7,8 @@ set -ouex pipefail
 echo 'fastestmirror=1' | tee -a /etc/dnf/dnf.conf
 echo 'max_parallel_downloads=10' | tee -a /etc/dnf/dnf.conf
 
+dfn5 -y in dnf-plugins
+
 dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
 dnf5 -y in distribution-gpg-keys && \
