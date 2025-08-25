@@ -1,0 +1,9 @@
+[Unit]
+Description=Clean up and update Flatpaks
+Documentation=man:flatpak(1)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c "/usr/bin/flatpak uninstall --unused -y && /usr/bin/flatpak update -y"

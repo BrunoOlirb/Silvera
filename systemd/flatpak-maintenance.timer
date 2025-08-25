@@ -1,0 +1,10 @@
+[Unit]
+Description=Run daily Flatpak maintenance
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=1h
+
+[Install]
+WantedBy=timers.target
