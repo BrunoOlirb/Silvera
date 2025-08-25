@@ -20,7 +20,7 @@ dnf5 -y --setopt=localpkg_gpgcheck=1 in https://mirrors.rpmfusion.org/free/fedor
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/vscode.repo > /dev/null
 
-dnf5 copr enable scottames/ghostty
+dnf5 copr enable scottames/ghostty -y
 
 ########## PACKAGES ##########
 
@@ -53,6 +53,7 @@ PKGS=(
     # Graphical tools
     nautilus
     ghostty
+    code
     chromium
 
     # Flatpaks
