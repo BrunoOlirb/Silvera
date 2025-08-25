@@ -28,6 +28,9 @@ PKGS=(
     # Hardware support
     @hardware-support
 
+    # Swap on ZRAM
+    zram-generator-defaults
+
     # Graphical Interface
     gdm
     gnome-session-wayland-session
@@ -52,6 +55,7 @@ PKGS=(
 
     # Graphical tools
     nautilus
+    gnome-tweaks
     ghostty
     code
     chromium
@@ -66,11 +70,6 @@ dnf5 -y in --setopt="install_weak_deps=False" "${PKGS[@]}"
 ########## Flatpak ##########
 
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-########## GNOME ##########
-
-gsettings set org.gnome.desktop.peripherals.mouse middle-click-emulation true
-gsettings set org.gnome.desktop.interface font-hinting 'full'
 
 ########## Systemd ##########
 
