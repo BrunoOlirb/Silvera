@@ -65,7 +65,6 @@ dnf5 -y in --setopt="install_weak_deps=False" "${PKGS[@]}"
 
 ########## Flatpak ##########
 
-flatpak remotes | awk '{print $1}' | xargs -n1 flatpak remote-delete
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 ########## GNOME ##########
