@@ -31,7 +31,7 @@ PKGS=(
     # Graphical Interface
     gdm
     gnome-session-wayland-session
-    adw-gtk3
+    adw-gtk3-theme
     @fonts
 
     # Audio support
