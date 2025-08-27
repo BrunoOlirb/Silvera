@@ -2,6 +2,11 @@
 
 set -ouex pipefail
 
+### It's present in all other images by people who know much better than me, so i'm adding it here
+
+# make root's home
+mkdir -p /var/roothome
+
 ########## DNF ##########
 
 echo 'fastestmirror=1' | tee -a /etc/dnf/dnf.conf
@@ -23,6 +28,7 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf5 copr enable scottames/ghostty -y
 
 ########## PACKAGES ##########
+
 
 PKGS=(
     # Hardware support
@@ -67,20 +73,41 @@ PKGS=(
 
 dnf5 -y in --setopt="install_weak_deps=False" "${PKGS[@]}"
 
+### From ublue main:
+
+# mitigate upstream packaging bug: https://bugzilla.redhat.com/show_bug.cgi?id=2332429
+# swap the incorrectly installed OpenCL-ICD-Loader for ocl-icd, the expected package
+dnf5 -y swap --repo='fedora' \
+    OpenCL-ICD-Loader ocl-icd
+
 ########## Flatpak ##########
 
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 ########## Systemd ##########
 
-SYSTEMD=(
+SYSTEMD_ENABLE=(
     gdm.service
     flatpak-maintenance.timer
     podman.socket
 )
 
-for UNIT in "${SYSTEMD[@]}"; do
+### From JianZcar/fedora-gnome, might fix the sudden reboot issue and the annoying remount-fs complaint.
+SYSTEMD_MASK=(
+    systemd-remount-fs.service
+    flatpak-add-fedora-repos.service ### Might just remove this from the image.
+    bootc-fetch-apply-updates.service
+    bootc-fetch-apply-updates.timer
+    rpm-ostree-countme.service
+    rpm-ostree-countme.timer
+)
+
+for UNIT in "${SYSTEMD_ENABLE[@]}"; do
     systemctl enable "$UNIT"
+done
+
+for UNIT in "${SYSTEMD_MASK[@]}"; do
+    systemctl mask "$UNIT"
 done
 
 systemctl set-default graphical.target
