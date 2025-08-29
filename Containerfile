@@ -14,9 +14,34 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/build.sh && \
+    /ctx/00-repos.sh && \
+    /ctx/helper/clean.sh && \
+    ostree container commit
+
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=tmpfs,dst=/tmp \
+    /ctx/01-packages.sh && \
+    /ctx/helper/clean.sh && \
     ostree container commit
     
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=tmpfs,dst=/tmp \
+    /ctx/02-systemd.sh && \
+    /ctx/helper/clean.sh && \
+    ostree container commit
+
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=tmpfs,dst=/tmp \
+    /ctx/03-sanitize.sh && \
+    /ctx/helper/clean.sh && \
+    ostree container commit
+
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
