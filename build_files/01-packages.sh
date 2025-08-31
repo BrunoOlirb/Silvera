@@ -9,15 +9,15 @@ PKGS=(
     # Swap on ZRAM
     zram-generator-defaults
 
+    # Audio support
+    pipewire
+    wireplumber
+
     # Graphical Interface
     gdm
     gnome-session-wayland-session
     adw-gtk3-theme
     @fonts
-
-    # Audio support
-    pipewire
-    wireplumber
 
     # Multimedia, hardware acceleration and codecs
     ffmpeg
@@ -30,7 +30,8 @@ PKGS=(
     # CLI tools
     distrobox 
     micro
-
+    ddcutil
+    
     # Graphical tools
     nautilus
     gnome-tweaks
