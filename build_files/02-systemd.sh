@@ -11,12 +11,12 @@ SYSTEMD_ENABLE=(
 
 ### From JianZcar/fedora-gnome, might fix the sudden reboot issue and the annoying remount-fs complaint.
 SYSTEMD_MASK=(
-    systemd-remount-fs.service
-    flatpak-add-fedora-repos.service ### Might just remove this from the image.
-    bootc-fetch-apply-updates.service
-    bootc-fetch-apply-updates.timer
-    rpm-ostree-countme.service
-    rpm-ostree-countme.timer
+    systemd-remount-fs.service                      # Was compalining about failure
+    flatpak-add-fedora-repos.service                ## Might just remove this from the image.
+    bootc-fetch-apply-updates.service               ### These two cause
+    bootc-fetch-apply-updates.timer                 ### automatic reboot
+    rpm-ostree-countme.service                      #### Fedora dnf telemetry
+    rpm-ostree-countme.timer                        #### might enable again
 )
 
 for UNIT in "${SYSTEMD_ENABLE[@]}"; do
