@@ -15,8 +15,6 @@ SYSTEMD_MASK=(
     flatpak-add-fedora-repos.service                ## Might just remove this from the image.
     bootc-fetch-apply-updates.service               ### These two cause
     bootc-fetch-apply-updates.timer                 ### automatic reboot
-    rpm-ostree-countme.service                      #### Fedora dnf telemetry
-    rpm-ostree-countme.timer                        #### might enable again
 )
 
 for UNIT in "${SYSTEMD_ENABLE[@]}"; do

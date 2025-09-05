@@ -2,6 +2,9 @@
 
 set -ouex pipefail
 
+# For chrome and other packages that may install to /opt
+ln -s /var/opt /opt
+
 PKGS=(
     # Hardware support
     @hardware-support
@@ -12,12 +15,6 @@ PKGS=(
     # Audio support
     pipewire
     wireplumber
-
-    # Graphical Interface
-    gdm
-    gnome-session-wayland-session
-    adw-gtk3-theme
-    @fonts
 
     # Multimedia, hardware acceleration and codecs
     ffmpeg
@@ -31,13 +28,27 @@ PKGS=(
     distrobox 
     micro
     ddcutil
+
+    # Graphical Interface
+    gdm
+    gnome-session-wayland-session
+    @fonts
+
+    # Themes and extension
+    adw-gtk3-theme
+    gnome-shell-theme-yaru
+    yaru-icon-theme
+    gnome-shell-extension-user-theme
+    gnome-shell-extension-dash-to-dock
     
     # Graphical tools
     nautilus
     gnome-tweaks
     ghostty
     code
+    emacs
     chromium
+    google-chrome-stable
 
     # Flatpaks
     flatpak
@@ -47,7 +58,6 @@ PKGS=(
 dnf5 -y in --setopt="install_weak_deps=False" "${PKGS[@]}"
 
 ### From ublue main:
-
 # mitigate upstream packaging bug: https://bugzilla.redhat.com/show_bug.cgi?id=2332429
 # swap the incorrectly installed OpenCL-ICD-Loader for ocl-icd, the expected package
 
