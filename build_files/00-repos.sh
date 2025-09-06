@@ -27,11 +27,5 @@ dnf config-manager setopt google-chrome.enabled=1
 dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
 # COPR
-COPRS=(
-    trixieua/morewaita-icon-theme
-    scottames/ghostty
-)
-
-for COPR in "${COPRS[@]}"; do
-    dnf5 copr enable "$COPR" -y
-done
+dnf5 copr enable trixieua/morewaita-icon-theme -y
+dnf5 copr enable scottames/ghostty -y
