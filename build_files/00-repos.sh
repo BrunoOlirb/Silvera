@@ -32,4 +32,6 @@ COPRS=(
     scottames/ghostty
 )
 
-dnf5 copr enable "$COPRS" -y
+for COPR in "${COPRS[@]}"; do
+    dnf5 copr enable "$COPR" -y
+done
