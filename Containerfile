@@ -6,7 +6,7 @@ COPY --chmod=0777 build_files /
 FROM quay.io/fedora/fedora-bootc:latest
 
 # Add files
-COPY --chmod=0644 ./systemd/* /etc/systemd/system/
+COPY --chmod=0644 ./build_files/systemd/* /etc/systemd/system/
 
 ### MODIFICATIONS
 
