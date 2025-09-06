@@ -53,9 +53,6 @@ PKGS=(
 
 dnf5 -y in --setopt="install_weak_deps=False" "${PKGS[@]}"
 
-# Make code use XDG Directories
-sed -i 's#%F#--extensions-dir "$XDG_DATA_HOME/vscode" %F#g' /usr/share/applications/code.desktop
-
 ### From ublue main:
 # mitigate upstream packaging bug: https://bugzilla.redhat.com/show_bug.cgi?id=2332429
 # swap the incorrectly installed OpenCL-ICD-Loader for ocl-icd, the expected package
