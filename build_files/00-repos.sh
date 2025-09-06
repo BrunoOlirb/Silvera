@@ -32,4 +32,4 @@ COPRS=(
     scottames/ghostty
 )
 
-dnf5 copr enable "$COPR" -y
+dnf5 copr enable "$COPRS" -y
