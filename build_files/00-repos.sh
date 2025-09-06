@@ -26,5 +26,10 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf config-manager setopt google-chrome.enabled=1
 dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
-# COPR for terminal
-dnf5 copr enable scottames/ghostty -y
+# COPR
+COPRS=(
+    trixieua/morewaita-icon-theme
+    scottames/ghostty
+)
+
+dnf5 copr enable "$COPR" -y

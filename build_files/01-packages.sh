@@ -25,22 +25,18 @@ PKGS=(
     @development-tools 
     
     # CLI tools
-    distrobox 
-    micro
+    distrobox
     ddcutil
 
     # Graphical Interface
     gdm
     gnome-session-wayland-session
     @fonts
-
-    # Themes and extension
-    adw-gtk3-theme
-    gnome-shell-theme-yaru
-    yaru-icon-theme
-    gnome-shell-extension-user-theme
-    gnome-shell-extension-dash-to-dock
     
+    # Theming for consistency
+    morewaita-icon-theme
+    adw-gtk3-theme
+
     # Graphical tools
     nautilus
     gnome-tweaks
